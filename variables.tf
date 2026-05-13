@@ -3,11 +3,6 @@ variable "ovh_service_name" {
   sensitive = true
 }
 
-variable "jwt_secret" {
-  type = string
-  sensitive = true
-}
-
 variable "domain" {
   default = "supabase.local"
   type = string
