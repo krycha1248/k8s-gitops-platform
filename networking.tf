@@ -1,7 +1,7 @@
 resource "ovh_cloud_project_network_private" "net" {
   service_name = var.ovh_service_name
   name         = "supabase-net"
-  regions      = ["WAW1"]
+  regions      = [local.region]
   vlan_id      = 10
 }
 
@@ -9,7 +9,7 @@ resource "ovh_cloud_project_network_private_subnet" "subnet" {
   service_name = ovh_cloud_project_network_private.net.service_name
   network_id   = ovh_cloud_project_network_private.net.id
 
-  region  = "WAW1"
+  region = local.region
   network = "192.168.0.0/24"
 
   start = "192.168.0.2"
@@ -23,7 +23,7 @@ resource "ovh_cloud_project_gateway" "gw" {
   service_name = var.ovh_service_name
   name         = "supabase-gw"
   model        = "s"
-  region       = ovh_cloud_project_network_private_subnet.subnet.region
+  region       = local.region
 
   network_id = tolist(
     ovh_cloud_project_network_private.net.regions_attributes[*].openstackid

@@ -1,7 +1,11 @@
+locals {
+  region = "WAW1"
+}
+
 resource "ovh_cloud_project_kube" "kubernetes_cluster" {
   service_name = var.ovh_service_name
   name         = "supabase"
-  region       = ovh_cloud_project_gateway.gw.region
+  region       = local.region
 
   private_network_id = tolist(
     ovh_cloud_project_network_private.net.regions_attributes[*].openstackid
@@ -11,7 +15,7 @@ resource "ovh_cloud_project_kube" "kubernetes_cluster" {
 
   private_network_configuration {
     private_network_routing_as_default = true
-    default_vrack_gateway              = "192.168.0.1"
+    default_vrack_gateway              = ovh_cloud_project_gateway.gw.interfaces[0].ip
   }
 }
 
