@@ -1,7 +1,7 @@
 resource "ovh_cloud_project_kube" "kubernetes_cluster" {
   service_name = var.ovh_service_name
   name         = "supabase"
-  region       = "WAW1"
+  region       = ovh_cloud_project_gateway.gw.region
 
   private_network_id = tolist(
     ovh_cloud_project_network_private.net.regions_attributes[*].openstackid
