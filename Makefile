@@ -49,7 +49,7 @@ plan-ci:
 apply-ci:
 	@$(TF_CI) apply -auto-approve
 
-destroy-ci:
+destroy-ci: init-ci
 	@$(TF_CI) destroy -auto-approve -input=false
 
 ci: init-ci apply-ci
