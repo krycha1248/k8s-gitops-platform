@@ -34,10 +34,13 @@ destroy:
 graph:
 	@$(TF_LOCAL) graph | dot -Tpng > dependency-graph.png
 
+full-graph:
+	@$(TF_LOCAL) graph -type=apply | dot -Tpng > full-dependency-graph.png
+
 config:
 	@mkdir -p ~/.kube && $(TF_LOCAL) output -raw kubernetes_config > ~/.kube/config
 
-local: init apply graph config
+local: init apply graph full-graph config
 
 #
 # CI/CD
