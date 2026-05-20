@@ -23,8 +23,8 @@ resource "helm_release" "supabase" {
     jwt_secret      = random_password.jwt_secret.result
     s3_region       = lower(ovh_cloud_project_storage.storage.region)
     s3_protocol     = "https"
-    s3_endpoint     = ovh_cloud_project_storage.storage.virtual_host
-    s3_storage_name = "data"
+    s3_endpoint     = "https://s3.${lower(ovh_cloud_project_storage.storage.region)}.io.cloud.ovh.net/"
+    s3_storage_name = ovh_cloud_project_storage.storage.name
   })]
 }
 

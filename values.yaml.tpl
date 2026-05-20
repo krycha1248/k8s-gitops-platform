@@ -758,7 +758,7 @@ environment:
     FILE_SIZE_LIMIT: "52428800"
     FILE_STORAGE_BACKEND_PATH: /var/lib/storage
     STORAGE_BACKEND: s3
-    TENANT_ID: stub
+    TENANT_ID: data
     REGION: ${s3_region}
     GLOBAL_S3_BUCKET: ${s3_storage_name}
     GLOBAL_S3_PROTOCOL: ${s3_protocol}
